@@ -9,7 +9,52 @@ package br.simoneflorincy.contrlole_de_gastos_poo;
  *
  * @author User
  */
-public class Endereco {
+import java.io.Serializable;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "endereco")
+public class Endereco implements Serializable {
+
+     //cd_endereco
+    @Column(name = "cd_endereco")
+    @Id
+    private String endereco;
+    @Column(name = "nm_bairro")
+    private String bairro;
+    @Column(name = "ds_cep")
+    private String cep;
+    @Column(name = "nm_cidade")
+    private String cidade;
+    @Column(name = "ds_complemento")
+    private String complemento;
+    @Column(name = "nr_numero")
+    private String numero;
+    @Column(name = "nm_rua")
+    private String rua;
+    @Column(name = "numeric_telefone")
+    private String telefone1;
+    @Column(name = "numeric_telefone")
+    private String telefone2;
+    /**
+     * @return the endereco
+     */
+    public String getEndereco() {
+        return endereco;
+    }
+
+    /**
+     * @param endereco the endereco to set
+     */
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
 
     /**
      * @return the bairro
@@ -122,12 +167,5 @@ public class Endereco {
     public void setTelefone2(String telefone2) {
         this.telefone2 = telefone2;
     }
-    private String bairro;
-    private String cep;
-    private String cidade;
-    private String complemento;
-    private String numero;
-    private String rua;
-    private String telefone1;
-    private String telefone2;
+
 }

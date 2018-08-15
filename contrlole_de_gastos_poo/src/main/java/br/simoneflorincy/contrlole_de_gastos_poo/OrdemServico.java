@@ -5,13 +5,61 @@
  */
 package br.simoneflorincy.contrlole_de_gastos_poo;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 
 /**
  *
  * @author User
  */
-public class OrdemServico {
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "ordem_servico")
+public class OrdemServico implements Serializable{
+    
+    //cd_ordem_servico
+    @Column(name = "cd_ordem_servico")
+    @Id
+    private Integer ordemservico;
+    @Column(name = "dt_ordem_servico")
+    private Date data;
+    @Column(name = "vl_total_numeric")
+    private Double valorTotal;
+   @Column(name = "funcionario_cd_funcionario")
+   @OneToOne(targetEntity = Funcionario.class,
+           cascade = CascadeType.REMOVE,
+           fetch = FetchType.EAGER)
+    private Funcionario funcionario;
+    @Column(name = "cliente_cd_cliente")
+    private Cliente cliente;
+    @Column(name = "bool_fechado")
+    @OneToOne(targetEntity = Cliente.class,
+            cascade = CascadeType.REMOVE,
+            fetch = FetchType.EAGER)
+    private Double fechado;
+   
+
+
+    /**
+     * @return the ordemservico
+     */
+    public Integer getOrdemservico() {
+        return ordemservico;
+    }
+
+    /**
+     * @param ordemservico the ordemservico to set
+     */
+    public void setOrdemservico(Integer ordemservico) {
+        this.ordemservico = ordemservico;
+    }
 
     /**
      * @return the data
@@ -30,14 +78,14 @@ public class OrdemServico {
     /**
      * @return the valorTotal
      */
-    public double getValorTotal() {
+    public Double getValorTotal() {
         return valorTotal;
     }
 
     /**
      * @param valorTotal the valorTotal to set
      */
-    public void setValorTotal(double valorTotal) {
+    public void setValorTotal(Double valorTotal) {
         this.valorTotal = valorTotal;
     }
 
@@ -68,11 +116,19 @@ public class OrdemServico {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    private Date data;
-    private double valorTotal;
-    private Funcionario funcionario;
-    private Cliente cliente;
-    
-    
+
+    /**
+     * @return the fechado
+     */
+    public Double getFechado() {
+        return fechado;
+    }
+
+    /**
+     * @param fechado the fechado to set
+     */
+    public void setFechado(Double fechado) {
+        this.fechado = fechado;
+    }
     
 }
